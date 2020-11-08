@@ -46,7 +46,7 @@ const Greeting = () => {
 ReactDom.render(<Greeting/>, document.getElementById('root'));
 ```
 
-## Basic CSS Implementation
+## Basic CSS
 
 index.css
 
@@ -64,4 +64,73 @@ index.js
 import './index.css';
 ```
 
-This CSS implementation should only be used for small projects.
+## JSX CSS
+
+```
+const Author = () => <h4 style={{ color: '#617d98', fontSize: '0.75rem' }}>Amelia Hepworth</h4>;
+```
+
+## Props
+
+```
+const title = 'I Love You to the Moon and Back';
+const author = 'Amelia Hepworth';
+
+const BookList = () => {
+  return (
+    <section className="booklist">
+      <Book title={title} author={author}/>
+    </section>
+  );
+}
+
+const Book = (props) => {
+
+  return <article className="book">
+    <h1>{props.title}</h1>
+    <h4>{props.author}</h4>
+  </article>
+}
+
+// Destructuring Props #1 - a different option
+const Book = (props) => {
+
+  const {title, author} = props;
+
+  return <article className="book">
+    <h1>{title}</h1>
+    <h4>{author}</h4>
+  </article>
+}
+
+// Destructuring Props #2 - a different option
+const Book = ({ title, author }) => {
+
+  return <article className="book">
+    <h1>{title}</h1>
+    <h4>{author}</h4>
+  </article>
+}
+
+```
+
+## List Map
+
+```
+const books = [
+  { id: 1, title: 'I Love You to the Moon and Back' },
+  { id: 2, title: 'Humans' }
+];
+
+const BookList = () => {
+  return (
+    <section className="booklist">
+
+      {books.map(book => (
+        <Book key={book.id} title={book.title} />
+      ))}
+
+    </section>
+  );
+}
+```
