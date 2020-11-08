@@ -45,3 +45,23 @@ const Greeting = () => {
 
 ReactDom.render(<Greeting/>, document.getElementById('root'));
 ```
+
+## Basic CSS Implementation
+
+index.css
+
+```
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+```
+
+index.js
+
+```
+import './index.css';
+```
+
+This CSS implementation should only be used for small projects.
