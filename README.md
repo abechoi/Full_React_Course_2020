@@ -92,7 +92,7 @@ const Book = (props) => {
   </article>
 }
 
-// Destructuring Props #1 - a different option
+// Destructuring Props Example #1 - a different option
 const Book = (props) => {
 
   const {title, author} = props;
@@ -103,7 +103,7 @@ const Book = (props) => {
   </article>
 }
 
-// Destructuring Props #2 - a different option
+// Destructuring Props Example #2 - a different option
 const Book = ({ title, author }) => {
 
   return <article className="book">
@@ -122,15 +122,73 @@ const books = [
   { id: 2, title: 'Humans' }
 ];
 
-const BookList = () => {
-  return (
-    <section className="booklist">
+// Map Example #1 - Implementing manually
+{books.map(book => (
+  <Book key={book.id} title={book.title} />
+))}
+const Book = (props) => {
 
-      {books.map(book => (
-        <Book key={book.id} title={book.title} />
-      ))}
-
-    </section>
-  );
+  return (<article className="book">
+    <h1>{book.title}</h1>
+  </article>);
 }
+
+// Map Example #2 - Passing the book element
+{books.map(book => {
+  return (
+    <Book key={book.id} book={book}/>
+  );
+})}
+const Book = (props) => {
+
+  const {id, title} = props.book;
+
+  return (<article className="book">
+    <h1>{title}</h1>
+  </article>);
+}
+
+// Map Example #3 - Spread operator
+{books.map(book => {
+  return (
+    <Book key={book.id} {...book}/>
+  );
+})}
+const Book = (props) => {
+
+  const {id, title} = props;
+
+  return (<article className="book">
+    <h1>{title}</h1>
+  </article>);
+}
+```
+
+## Event Basics
+
+```
+const clickHandler = (e) => {
+  console.log(e);
+  console.log(e.target);
+  alert('Hello World!');
+}
+
+const complexExample = (author) => {
+  console.log(author);
+}
+
+return (
+  // Mouseover Event
+  <article className="book" onMouseOver={() => console.log(title)}>
+    // OnClick Event by inline
+    <h1 onClick={() => console.log(title)}>{title}</h1>
+    // OnClick Event by reference
+    <button type="button" onClick={clickHandler}>
+      CLICK
+    </button>
+    // Dynamic OnClick Event
+    <button type="button" onClick={() => complexExample(author)}>Complex Example</button>
+  </article>
+);
+
 ```
