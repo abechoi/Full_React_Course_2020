@@ -228,3 +228,28 @@ const removeItem = (id) => {
   setPeople(newPeople);
 }
 ```
+
+## Counters
+
+```
+// basic counter button
+<button className='btn' onClick={() => setValue(value + 1)}>+</button>
+
+// delayed counter function - gets value from state
+// this function will not account for multiple clicks within 3 seconds
+const complexIncrease = () => {
+  setTimeout(() => {
+    setValue(value + 1);
+  }, 3000);
+}
+
+// delayed counter function - gets value from prev parameter
+// this function will accounts for multiple clicks within 3 seconds
+const complexIncrease = () => {
+  setTimeout(() => {
+    setValue(prev => {
+      return prev + 1;
+    });
+  }, 3000);
+}
+```
