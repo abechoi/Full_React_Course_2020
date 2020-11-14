@@ -214,3 +214,17 @@ return <React.Fragment>
   </button>
 </React.Fragment>
 ```
+
+## Arrays
+
+```
+// Filter example - remove item on click
+const removeItem = (id) => {
+  setPeople(people.filter(person => person.id !== id));
+}
+// Alternative example - more explicit
+const removeItem = (id) => {
+  let newPeople = people.filter(person => person.id !== id);
+  setPeople(newPeople);
+}
+```
