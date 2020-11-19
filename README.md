@@ -253,3 +253,49 @@ const complexIncrease = () => {
   }, 3000);
 }
 ```
+
+## useEffect
+
+```
+// useEffect basic example
+useEffect(() => {
+  console.log("Call useEffect");
+  document.title = `New Messages(${value})`;
+});
+
+// good conditional hook example
+useEffect(() => {
+  if(value > 1){
+    document.title = `New Messages(${value})`;
+  }
+});
+
+// empty array as a second parameter
+// indicates that useEffect will only run once
+useEffect(() => {
+  if(value >= 1){
+    document.title = `New Messages(${value})`;
+  }
+}, []);
+
+// value array as a second parameter
+// indicates that useEffect will only run everytime value changes
+useEffect(() => {
+  if(value >= 1){
+    document.title = `New Messages(${value})`;
+  }
+}, [value]);
+```
+
+## Cleanup
+
+```
+// Remove the listener to prevent memory leaks
+useEffect(() => {
+  window.addEventListener('resize', checkSize)
+  return () => {
+    console.log('cleanup');
+    window.removeEventListener('resize', checkSize);
+  }
+});
+```
