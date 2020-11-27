@@ -299,3 +299,39 @@ useEffect(() => {
   }
 });
 ```
+
+## Fetch
+
+```
+// Fetching with async/await
+const getUsers = async() => {
+  const response = await fetch(url);
+  const users = await response.json();
+  // WARNING: INFINITE LOOP, add dependency array to useEffect to fix this.
+  setUsers(users);
+}
+
+useEffect(() => {
+  getUsers();
+}, []);
+
+// Fetching multiple returns
+useEffect(() => {
+  fetch(url)
+    .then(res => {
+      if(res.status >= 200 && res.status <= 299){
+        return res.json();
+      }else{
+        setIsLoading(false);
+        setIsError(true);
+        throw new Error(res.statusText)
+      }
+    })
+    .then(user => {
+      const {login} = user;
+      setUser(login);
+      setIsLoading(false);
+    })
+    .catch(err => console.log(err));
+}, [])
+```
