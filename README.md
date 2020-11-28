@@ -193,6 +193,12 @@ return (
 
 ```
 
+## Toggle Button
+
+```
+<button className="btn" onClick={() => setIsError(!isError)}>Toggle</button>
+```
+
 ## useState
 
 ```
@@ -334,4 +340,66 @@ useEffect(() => {
     })
     .catch(err => console.log(err));
 }, [])
+```
+
+## Short-Circuit
+
+```
+// Short-circuit Example #1 - falsy variable
+const [text, setText] = useState('');
+// falsy OR 'hello world' = 'hello world'
+const firstValue = text || 'hello world';
+// falsy AND 'hello world' = null
+const secondValue = text && 'hello world';
+
+// Short-circuit Example #2 - truthy variable
+const [text, setText] = useState('Hi');
+// truthy OR 'hello world' = 'Hi'
+const firstValue = text || 'hello world';
+// truthy AND 'hello world' = 'Hi'
+const secondValue = text && 'hello world';
+```
+
+## Ternary Operator
+
+```
+{isError ? <p>TRUE</p> : <p>FALSE</p>}
+```
+
+## Forms
+
+```
+// Submit Example #1
+<form className="form" onSubmit={handleSubmit}>
+    <label htmlFor="firstName">Name: </label>
+    <input type="text" id="firstName" name="firstName"/>
+  <button type='submit'>Add</button>
+</form>
+
+// Submit Example #2
+<form className="form">
+    <label htmlFor="firstName">Name: </label>
+    <input type="text" id="firstName" name="firstName"/>
+  <button type='submit' onClick={handleSubmit}>Add</button>
+</form>
+
+// Controlled Inputs
+const [firstName, setFirstName] = useState('');
+
+const handleSubmit = e => {
+  e.preventDefault();
+  console.log(firstName);
+}
+return <>
+  <article>
+    <form className="form" onSubmit={handleSubmit}>
+      <div className="form-control">
+        <label htmlFor="firstName">Name: </label>
+        <input type="text" id="firstName" name="firstName" value={firstName}
+        onChange={e => setFirstName(e.target.value)}/>
+      </div>
+      <button type='submit'>Add</button>
+    </form>
+  </article>
+</>;
 ```
