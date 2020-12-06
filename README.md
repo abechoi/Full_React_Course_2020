@@ -233,6 +233,12 @@ const removeItem = (id) => {
   let newPeople = people.filter(person => person.id !== id);
   setPeople(newPeople);
 }
+// Add Element example #1
+setPeople([...people, person]);
+// Add Element example #2
+setPeople(people => {
+  return [...people, person];
+});
 ```
 
 ## Counters
@@ -402,4 +408,26 @@ return <>
     </form>
   </article>
 </>;
+```
+
+## Multiple Inputs
+
+```
+const [person, setPerson] = useState({firstName: '', email: '', age: ''});
+const [people, setPeople] = useState([]);
+
+const handleChange = e => {
+  const name = e.target.name; // gets property name
+  const value = e.target.value; // get property value
+  setPerson({...person, [name]: value});
+}
+
+const handleSubmit = e => {
+  e.preventDefault();
+  if(person.firstName && person.email && person.age){
+    const newPerson = {...person, id: new Date().getTime().toString()}
+    setPeople([...people, newPerson]);
+    setPerson({firstName: '', email: '', age: ''});
+  }
+}
 ```
