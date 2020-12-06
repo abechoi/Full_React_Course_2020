@@ -1,6 +1,6 @@
 # Full React Course 2020
 
-# Table of Contents
+## Table of Contents
 1. [Props](#props)
 2. [Example2](#example2)
 3. [Third Example](#third-example)
@@ -76,7 +76,7 @@ import './index.css';
 const Author = () => <h4 style={{ color: '#617d98', fontSize: '0.75rem' }}>Amelia Hepworth</h4>;
 ```
 
-## Props
+## 1. Props
 
 ```
 const title = 'I Love You to the Moon and Back';
