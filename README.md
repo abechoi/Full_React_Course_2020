@@ -1,5 +1,27 @@
 # Full React Course 2020
 
+## Table of Contents
+
+1. [VScode - Settings & Extensions](#VScode - Settings & Extensions)
+2. [Getting Started](#Getting Started)
+3. [Hello World](#Hello World)
+4. [Basic CSS](#Basic CSS)
+5. [JSX CSS](#JSX CSS)
+6. [Props](#Props)
+7. [List Map](#List Map)
+8. [Event Basics](#Event Basics)
+9. [Toggle Button](#Toggle Button)
+10. [useState](#useState)
+11. [Arrays](#Arrays)
+12. [Counters](#Counters)
+13. [useEffect](#useEffect)
+14. [Cleanup](#Cleanup)
+15. [Fetch](#Fetch)
+16. [Short-Circuit](#Short-Circuit)
+17. [Ternary Operator](#Ternary Operator)
+18. [Forms](#Forms)
+19. [Multiple Inputs](#Multiple Inputs)
+
 ## VScode - Settings & Extensions
 
 - Prettier - Code formatter
