@@ -21,6 +21,7 @@
 17. [Ternary Operator](#ternary-operator)
 18. [Forms](#forms)
 19. [Multiple Inputs](#multiple-inputs)
+20. [useRef](#useref)
 
 ## VScode Extensions
 
@@ -452,4 +453,32 @@ const handleSubmit = e => {
     setPerson({firstName: '', email: '', age: ''});
   }
 }
+```
+
+## useRef
+
+```
+// preserves value
+// DOES NOT trigger re-render
+// target DOM nodes/elements
+
+// refContainer references the input value
+const refContainer = useRef(null);
+// divContainer = <div>Hello World</div>
+const divContainer = useRef(null);
+
+useEffect(() => {
+  console.log(refContainer.current);
+  refContainer.current.focus();
+});
+
+return <>
+  <form className="form" onSubmit={handleSubmit}>
+    <div>
+      <input type="text" ref={refContainer}/>
+      <button type="submit">submit</button>
+    </div>
+  </form>
+  <div ref={divContainer}>Hello World</div>
+</>;
 ```
