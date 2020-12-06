@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-1. [VScode - Settings & Extensions](#vscode-settings-&-extensions)
+1. [VScode Extensions](#vscode-extensions)
 2. [Getting Started](#getting-started)
 3. [Hello World](#hello-world)
 4. [Basic CSS](#basic-cSS)
@@ -22,7 +22,7 @@
 18. [Forms](#forms)
 19. [Multiple Inputs](#multiple-inputs)
 
-## VScode - Settings & Extensions
+## VScode Extensions
 
 - Prettier - Code formatter
   Settings > Text Editor > Formatting
