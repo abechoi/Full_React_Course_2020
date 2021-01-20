@@ -22,6 +22,7 @@
 18. [Forms](#forms)
 19. [Multiple Inputs](#multiple-inputs)
 20. [useRef](#useref)
+21. [useReducer](#userReducer)
 
 ## VScode Extensions
 
@@ -482,3 +483,5 @@ return <>
   <div ref={divContainer}>Hello World</div>
 </>;
 ```
+
+## useReducer
