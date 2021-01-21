@@ -485,3 +485,34 @@ return <>
 ```
 
 ## useReducer
+
+```
+// Refactor
+const reducer = (state, action) => {};
+
+const defaultState = {
+  people: [],
+  isModalOpen: false,
+  modalContent: "Hello World",
+};
+
+const Index = () => {
+
+const [name, setName] = useState("");
+const [state, dispatch] = useReducer(reducer, defaultState);
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  if (name) {
+  } else {
+  }
+};
+
+return (
+  <>
+    {state.isModalOpen && <Modal modalContent={state.modalContent} />}
+    <form onSubmit={handleSubmit} className="form">
+    </form>
+  </>);
+}
+```
