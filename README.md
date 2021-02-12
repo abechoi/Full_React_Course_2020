@@ -21,8 +21,8 @@
 17. [Ternary Operator](#ternary-operator)
 18. [Forms](#forms)
 19. [Multiple Inputs](#multiple-inputs)
-20. [useRef](#useref)
-21. [useReducer](#userReducer)
+20. [useRef](#useRef)
+21. [useReducer](#useReducer)
 
 ## VScode Extensions
 
@@ -487,9 +487,59 @@ return <>
 ## useReducer
 
 ```
-// Refactor
-const reducer = (state, action) => {};
+// Modal.js
+const Modal = ({ modalContent, closeModal }) => {
+  useEffect(() => {
+    setTimeout(() => {
+      closeModal();
+    }, 3000);
+  });
 
+  return (
+    <div className="modal">
+      <p>{modalContent}</p>
+    </div>
+  );
+};
+
+export default Modal;
+
+// reducer.js
+export const reducer = (state, action) => {
+
+  switch (action.type) {
+    case "ADD_ITEM":
+      return {
+        ...state,
+        people: [...state.people, action.payload],
+        isModalOpen: true,
+        modalContent: "item added",
+      };
+    case "NO_VALUE":
+      return {
+        ...state,
+        isModalOpen: true,
+        modalContent: "please enter value",
+      };
+    case "CLOSE_MODAL":
+      return { ...state, isModalOpen: false };
+    case "REMOVE_ITEM":
+      const newPeople = state.people.filter(
+        (person) => person.id !== action.payload
+      );
+      return {
+        ...state,
+        people: newPeople,
+        isModalOpen: true,
+        modalContent: "item removed",
+      };
+    default:
+      throw new Error("no matching action type");
+  }
+
+};
+
+// Index.js
 const defaultState = {
   people: [],
   isModalOpen: false,
@@ -497,22 +547,57 @@ const defaultState = {
 };
 
 const Index = () => {
+  const [name, setName] = useState("");
+  const [state, dispatch] = useReducer(reducer, defaultState);
 
-const [name, setName] = useState("");
-const [state, dispatch] = useReducer(reducer, defaultState);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (name) {
+      const newItem = { id: new Date().getTime().toString(), name };
+      dispatch({ type: "ADD_ITEM", payload: newItem });
+      setName("");
+    } else {
+      dispatch({ type: "NO_VALUE" });
+    }
+  };
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  if (name) {
-  } else {
-  }
+  const closeModal = () => {
+    dispatch({ type: "CLOSE_MODAL" });
+  };
+
+  return (
+    <>
+      {state.isModalOpen && (
+        <Modal closeModal={closeModal} modalContent={state.modalContent} />
+      )}
+      <form onSubmit={handleSubmit} className="form">
+        <div>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <button type="submit">add</button>
+      </form>
+      {state.people.map((person) => {
+        return (
+          <div key={person.id} className="item">
+            <h4>{person.name}</h4>
+            <button
+              onClick={() =>
+                dispatch({ type: "REMOVE_ITEM", payload: person.id })
+              }
+            >
+              remove
+            </button>
+          </div>
+        );
+      })}
+    </>
+  );
 };
 
-return (
-  <>
-    {state.isModalOpen && <Modal modalContent={state.modalContent} />}
-    <form onSubmit={handleSubmit} className="form">
-    </form>
-  </>);
-}
+export default Index;
+
 ```
