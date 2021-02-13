@@ -24,6 +24,7 @@
 20. [useRef](#useref)
 21. [useReducer](#usereducer)
 22. [useContext](#usecontext)
+23. [Custom Hooks](#custom-hooks)
 
 ## VScode Extensions
 
@@ -598,9 +599,6 @@ const Index = () => {
     </>
   );
 };
-
-export default Index;
-
 ```
 
 ## useContext
@@ -639,6 +637,43 @@ const SinglePerson = ({ id, name }) => {
     <div className="item">
       <h4>{name}</h4>
       <button onClick={() => removePerson(id)}>remove</button>
+    </div>
+  );
+};
+```
+
+## Custom Hooks
+
+```
+// useFetch is a custom hook that fetches with a url argument
+export const useFetch = (url) => {
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+
+  const getProducts = async () => {
+    const response = await fetch(url);
+    const products = await response.json();
+    setProducts(products);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, [url]);
+
+  return { loading, products };
+};
+
+const url = "https://course-api.com/javascript-store-products";
+
+const Example = () => {
+  // Call useFetch and pass in the url
+  const { loading, products } = useFetch(url);
+
+  console.log(products);
+  return (
+    <div>
+      <h2>{loading ? "loading..." : "data"}</h2>
     </div>
   );
 };
