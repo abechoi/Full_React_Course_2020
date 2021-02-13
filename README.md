@@ -23,6 +23,7 @@
 19. [Multiple Inputs](#multiple-inputs)
 20. [useRef](#useref)
 21. [useReducer](#usereducer)
+22. [useContext](#usecontext)
 
 ## VScode Extensions
 
@@ -600,4 +601,45 @@ const Index = () => {
 
 export default Index;
 
+```
+
+## useContext
+
+```
+// How to pass variables without prop drilling...
+// 1. Create context with React.createContext();
+
+const PersonContext = React.createContext();
+
+const ContextAPI = () => {
+
+  const removePerson = (id) => {
+    setPeople((people) => {
+      return people.filter((person) => person.id !== id);
+    });
+  };
+
+  return (
+// 2. Wrap subcomponents with a context provider and pass your variables
+    <PersonContext.Provider value={{ removePerson }}>
+      <h3>prop drilling</h3>
+      <List />
+    </PersonContext.Provider>
+  );
+};
+
+const List = () => {
+  ...
+};
+
+const SinglePerson = ({ id, name }) => {
+// 3. Destructure variables with useContext function
+  const { removePerson } = useContext(PersonContext);
+  return (
+    <div className="item">
+      <h4>{name}</h4>
+      <button onClick={() => removePerson(id)}>remove</button>
+    </div>
+  );
+};
 ```
