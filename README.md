@@ -5,7 +5,7 @@
 1. [VScode Extensions](#vscode-extensions)
 2. [Getting Started](#getting-started)
 3. [Hello World](#hello-world)
-4. [Basic CSS](#basic-cSS)
+4. [Basic CSS](#basic-css)
 5. [JSX CSS](#jsx-css)
 6. [Props](#props)
 7. [List Map](#list-map)
@@ -21,8 +21,8 @@
 17. [Ternary Operator](#ternary-operator)
 18. [Forms](#forms)
 19. [Multiple Inputs](#multiple-inputs)
-20. [useRef](#useRef)
-21. [useReducer](#useReducer)
+20. [useRef](#useref)
+21. [useReducer](#usereducer)
 
 ## VScode Extensions
 
