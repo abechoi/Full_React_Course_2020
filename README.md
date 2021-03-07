@@ -26,6 +26,7 @@
 22. [useContext](#usecontext)
 23. [Custom Hooks](#custom-hooks)
 24. [PropTypes](#proptypes)
+25. [React-Router-DOM](#react-router-dom)
 
 ## VScode Extensions
 
@@ -712,4 +713,64 @@ Product.defaultProps = {
 
 export default Product;
 
+```
+
+## React-Router-DOM
+
+```
+// Routers, Routes, and Switches
+const ReactRouterSetup = () => {
+  return (
+    <Router>
+      <Navbar />
+      <Switch>
+        // exact ensures every path that starts with "/" does not match with Home.
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/people">
+          <People />
+        </Route>
+        // path creates urls ie. localhost:3000/person/1
+        <Route path="/person/:id" children={<Person />}></Route>
+        // * matches everything
+        <Route path="*">
+          <Error />
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
+
+// Links
+const Navbar = () => {
+  return (
+    <nav>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/people">People</Link>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+const People = () => {
+  const [people, setPeople] = useState(data);
+  return (
+    <div>
+      <h1>People Page</h1>
+      {people.map((person) => {
+        return (
+          <div key={person.id} className="item">
+            <h4>{person.name}</h4>
+            <Link to={`/person/${person.id}`}>Details</Link>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 ```
